@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "202848572207",
+    "firebase_url": "https://student-messaging-servic-86cdf.firebaseio.com",
+    "project_id": "student-messaging-servic-86cdf",
+    "storage_bucket": "student-messaging-servic-86cdf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202848572207:android:fdd17e6c3632f3c9",
+        "android_client_info": {
+          "package_name": "com.example.karthik.studentmessagingservicesms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "202848572207-v9jn9jg62iranbl5edf8hcvleo2jgb4r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.karthik.studentmessagingservicesms",
+            "certificate_hash": "e993359b3b0667a0956b1c397f4a04a410845da8"
+          }
+        },
+        {
+          "client_id": "202848572207-8g5gh1vaumu14ql5g7d410j0dud6v0ig.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-F0YlONuc1GpjX7gV3zw_fXvLUqprpx0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "202848572207-8g5gh1vaumu14ql5g7d410j0dud6v0ig.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
