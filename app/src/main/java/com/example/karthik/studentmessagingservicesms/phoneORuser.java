@@ -27,13 +27,14 @@ public class phoneORuser extends AppCompatActivity {
     EditText mail;
     EditText word;
     Intent intent;
+    FirebaseUser currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.phoneoruser);
         next=findViewById(R.id.next);
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        currentUser = mAuth.getCurrentUser();
         mail=findViewById(R.id.mail);
         word=findViewById(R.id.word);
         intent=new Intent(this,SchoolActivity.class);
@@ -44,11 +45,12 @@ public class phoneORuser extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                email = mail.getText().toString();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                email=mail.getText().toString();
+
             }
         });
         word.addTextChangedListener(new TextWatcher() {
@@ -58,11 +60,12 @@ public class phoneORuser extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                password=word.getText().toString();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                password=word.getText().toString();
+
             }
         });
         next.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +83,7 @@ public class phoneORuser extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d("Login", "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            currentUser = mAuth.getCurrentUser();
                             startActivity(intent);
                         } else {
                             Log.w("Login", "createUserWithEmail:failure", task.getException());
