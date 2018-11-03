@@ -44,8 +44,8 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundImage" value="C:\Users\yin4t\Downloads\icon.png" />
-                                      <entry key="foregroundImage" value="C:\Users\yin4t\Downloads\icon.png" />
+                                      <entry key="backgroundImage" value="C:\Users\yin4t\AndroidStudioProjects\smsPlus\app\src\main\res\drawable\icon.png" />
+                                      <entry key="foregroundImage" value="C:\Users\yin4t\AndroidStudioProjects\smsPlus\app\src\main\res\drawable\icon.png" />
                                       <entry key="legacyIconShape" value="NONE" />
                                     </map>
                                   </option>
