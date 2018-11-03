@@ -19,6 +19,8 @@
         <activity android:name=".SchoolActivity"/>
         <activity android:name=".ScheduleActivity"/>
         <activity android:name=".ClassroomActivity"/>
+        <activity android:name=".landing"/>
+        <activity android:name=".phoneORuser"/>
     </application>
 
 </manifest>
