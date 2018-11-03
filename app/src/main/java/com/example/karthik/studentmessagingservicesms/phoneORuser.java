@@ -8,6 +8,6 @@ public class phoneORuser extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.phoneORuser);
+        setContentView(R.layout.phoneoruser);
     }
 }
