@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        intentSignedOut = new Intent(this,landing.class);
+        intentSignedOut = new Intent(this,ChatMessage.class);
         text = findViewById(R.id.id_text);
         startActivity(intentSignedOut);
         FirebaseAuth auth = FirebaseAuth.getInstance();

@@ -22,6 +22,7 @@
         <activity android:name=".phoneORuser"/>
         <activity android:name=".landing"/>
         <activity android:name=".LoginActivity"/>
+        <activity android:name=".ChatMessage"/>
     </application>
 
 </manifest>
