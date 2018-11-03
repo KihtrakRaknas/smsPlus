@@ -24,7 +24,7 @@
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="347dp"
+        android:layout_width="match_constraint"
         android:layout_height="41dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
