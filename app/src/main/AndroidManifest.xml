@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.karthik.studentmessagingservicesms">
+    <meta-data android:name="com.here.android.maps.appid" android:value="PiUuMFAt50RGs4IAERsO"/>
+    <meta-data android:name="com.here.android.maps.apptoken" android:value="Kw_UW4CNWr69eHFJMJWGCw"/>
 
     <application
         android:allowBackup="true"
