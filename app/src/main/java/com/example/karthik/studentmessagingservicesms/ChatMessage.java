@@ -16,6 +16,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -56,6 +58,11 @@ public class ChatMessage extends AppCompatActivity{
         });
 
         list = findViewById(R.id.list_messages);
+
+        FirebaseUser user =  FirebaseAuth.getInstance().getCurrentUser();
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setDisplayName("Karthik Sankar").build();
+        user.updateProfile(profileUpdates);
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
