@@ -6,19 +6,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
-    Intent intent;
+    Intent signUp;
+    Intent signIn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        intent = new Intent(this,phoneORuser.class);
+        signUp = new Intent(this,phoneORuser.class);
+        signIn = new Intent(this, LoginActivity.class);
     }
 
     public void redirectToSignIn(View V){
-        startActivity(intent);
+        startActivity(signIn);
     }
 
     public void redirectToSignUp(View V){
-        startActivity(intent);
+        startActivity(signUp);
     }
 }
