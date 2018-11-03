@@ -11,11 +11,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        intent = new Intent(this,landing.class);
+        intent = new Intent(this,phoneORuser.class);
+    }
+
+    public void redirectToSignIn(View V){
         startActivity(intent);
     }
 
-    public void signUp(View v){
-
+    public void redirectToSignUp(View V){
+        startActivity(intent);
     }
 }
