@@ -37,6 +37,7 @@ public class ChatMessage extends AppCompatActivity{
     DatabaseReference myRef;
     LinearLayout list;
     FirebaseUser user;
+    ScrollView scrollView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
@@ -46,6 +47,9 @@ public class ChatMessage extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.message);
+
+        scrollView = findViewById(R.id.scroll);
+
 
         myRef = database.getReference("message");
 
@@ -137,6 +141,12 @@ public class ChatMessage extends AppCompatActivity{
                 }
                 //String value = dataSnapshot.getValue(String.class);
                 //Log.d("READDATA", "Value is: " + value);
+                scrollView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                    }
+                });
             }
 
             @Override
