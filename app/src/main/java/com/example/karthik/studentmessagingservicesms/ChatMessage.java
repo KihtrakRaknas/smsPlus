@@ -57,7 +57,7 @@ public class ChatMessage extends AppCompatActivity{
         scrollView = findViewById(R.id.scroll);
 
 
-        myRef = database.getReference("message/"+chat+"Messages");
+        myRef = database.getReference("message/"+chat+"/Messages");
 
         FloatingActionButton fab = findViewById(R.id.fab);
         user = FirebaseAuth.getInstance().getCurrentUser();

@@ -68,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intentSignedOut);
         }else{
             myRef = database.getReference("message");
+            while(chats.size()!=0)
+                chats.remove(0);
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -83,8 +85,6 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             });
-
-
 
 
             arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, chats);
