@@ -87,7 +87,7 @@ public class ChatMessage extends AppCompatActivity{
 
                     TextView message = new TextView(ChatMessage.this);
                     message.setBackground(getDrawable(R.drawable.rounded_rectangle_orange));
-                    ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT,ConstraintLayout.LayoutParams.WRAP_CONTENT);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
                     message.setLayoutParams(params);
                     params.setMargins(10,10,10,10);
                     int paddingDp = 8;
@@ -96,30 +96,18 @@ public class ChatMessage extends AppCompatActivity{
                     message.setPadding(paddingPixel,paddingPixel,paddingPixel,paddingPixel);
                     message.setText(mess.messageText);
 
-                    //list.addView(message);
+                    list.addView(message);
 
                     TextView timestamp = new TextView(ChatMessage.this);
                     timestamp.setText(""+mess.messageTime);
                     timestamp.setLayoutParams(params);
-                    timestamp.setTextSize(TypedValue.COMPLEX_UNIT_SP,10);
-
-
-
-
-                    ConstraintLayout newLay = new ConstraintLayout(ChatMessage.this);
-                    newLay.addView(message);
-                    newLay.addView(timestamp);
-
-                    ConstraintSet constraintSet = new ConstraintSet();
-                    constraintSet.clone(newLay);
-                    constraintSet.connect(timestamp.getId(), ConstraintSet.LEFT, message.getId(), ConstraintSet.RIGHT, 0);
+                    timestamp.setTextSize(TypedValue.COMPLEX_UNIT_SP,8);
 
                     LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
-                    params2.setMargins(5,5,5,5);
-                    newLay.setLayoutParams(params2);
-                    //newLay.setPadding(paddingPixel,paddingPixel,paddingPixel,paddingPixel);
+                    params2.setMargins(10,0,0,0);
+                    message.setLayoutParams(params2);
 
-                    list.addView(newLay);
+                    list.addView(timestamp);
                 }
                 //String value = dataSnapshot.getValue(String.class);
                 //Log.d("READDATA", "Value is: " + value);
