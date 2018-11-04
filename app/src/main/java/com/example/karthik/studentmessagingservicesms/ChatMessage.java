@@ -5,6 +5,7 @@ import android.os.Bundle;
 import java.util.Date;
 
 import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -98,14 +99,21 @@ public class ChatMessage extends AppCompatActivity{
                     //list.addView(message);
 
                     TextView timestamp = new TextView(ChatMessage.this);
-                    timestamp.setText(mess.messageTime);
+                    timestamp.setText(""+mess.messageTime);
                     timestamp.setLayoutParams(params);
                     timestamp.setTextSize(TypedValue.COMPLEX_UNIT_SP,10);
 
 
 
+
                     ConstraintLayout newLay = new ConstraintLayout(ChatMessage.this);
                     newLay.addView(message);
+                    newLay.addView(timestamp);
+
+                    ConstraintSet constraintSet = new ConstraintSet();
+                    constraintSet.clone(newLay);
+                    constraintSet.connect(timestamp.getId(), ConstraintSet.LEFT, message.getId(), ConstraintSet.RIGHT, 0);
+
                     LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
                     params2.setMargins(5,5,5,5);
                     newLay.setLayoutParams(params2);
