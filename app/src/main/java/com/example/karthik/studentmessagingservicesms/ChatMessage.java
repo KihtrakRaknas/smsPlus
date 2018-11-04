@@ -45,7 +45,6 @@ public class ChatMessage extends AppCompatActivity{
     ScrollView scrollView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
     int maxIndex=-1;
 
     @Override

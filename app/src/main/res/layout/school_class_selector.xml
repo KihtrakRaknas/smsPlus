@@ -13,17 +13,18 @@
         android:layout_height="wrap_content"
         android:layout_weight="5"
         android:inputType="text"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="191dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aday4" />
 
     <EditText
         android:id="@+id/aday2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="77dp"
         android:layout_weight="5"
         android:inputType="text"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="123dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aday1" />
 
     <EditText
         android:id="@+id/bday4"
@@ -38,50 +39,57 @@
         android:layout_height="wrap_content"
         android:layout_weight="5"
         android:inputType="text"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="169dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aday2" />
 
     <EditText
         android:id="@+id/bday3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="91dp"
         android:layout_weight="5"
         android:inputType="text"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="406dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aday3" />
 
     <EditText
         android:id="@+id/aday3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
         android:layout_weight="5"
         android:inputType="text"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="269dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bday2" />
 
     <EditText
         android:id="@+id/bday1"
         android:layout_width="105dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="15dp"
         android:layout_weight="2.5"
         android:gravity="center_horizontal"
         android:inputType="text"
-        tools:layout_editor_absoluteX="81dp"
-        tools:layout_editor_absoluteY="154dp" />
+        app:layout_constraintEnd_toStartOf="@+id/aday4"
+        app:layout_constraintTop_toBottomOf="@+id/aday2" />
 
     <EditText
         android:id="@+id/aday1"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:inputType="text"
-        tools:layout_editor_absoluteX="304dp" />
+        app:layout_constraintEnd_toStartOf="@+id/bday4"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="16dp"
+        android:layout_marginEnd="224dp"
+        android:layout_marginTop="14dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="62dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bday4" />
 
 </android.support.constraint.ConstraintLayout>
