@@ -47,8 +47,9 @@ public class MainActivity extends AppCompatActivity {
         if(user == null){
             startActivity(intentSignedOut);
         }else{
-            startActivity(intentChat);
             ((TextView)headerView.findViewById(R.id.nav_view_name)).setText(user.getDisplayName());
+            intentChat.putExtra("chat","TESTERS");
+            startActivity(intentChat);
         }
 
         FirebaseAuth auth = FirebaseAuth.getInstance();

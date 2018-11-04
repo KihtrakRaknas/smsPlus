@@ -1,5 +1,6 @@
 package com.example.karthik.studentmessagingservicesms;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.text.DateFormat;
@@ -32,6 +33,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
+
 public class ChatMessage extends AppCompatActivity{
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
@@ -48,10 +51,13 @@ public class ChatMessage extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.message);
 
+        Intent intent = getIntent();
+        String chat = intent.getStringExtra("chat");
+
         scrollView = findViewById(R.id.scroll);
 
 
-        myRef = database.getReference("message");
+        myRef = database.getReference("message/"+chat+"Messages");
 
         FloatingActionButton fab = findViewById(R.id.fab);
         user = FirebaseAuth.getInstance().getCurrentUser();
