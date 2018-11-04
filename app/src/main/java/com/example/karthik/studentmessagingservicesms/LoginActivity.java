@@ -1,5 +1,6 @@
 package com.example.karthik.studentmessagingservicesms;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -23,12 +24,14 @@ public class LoginActivity extends AppCompatActivity {
     String password;
     EditText mail;
     EditText word;
+    Intent intent;
     private FirebaseAuth mAuth;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         next=findViewById(R.id.login);
         mAuth = FirebaseAuth.getInstance();
+        intent=new Intent(this,MainActivity.class);
             mail=findViewById(R.id.mail);
             word=findViewById(R.id.word);
             email="";
@@ -79,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Toast.makeText(LoginActivity.this, "You're in!",
                                         Toast.LENGTH_LONG).show();
-                                //startActivity(intent);
+                                startActivity(intent);
                             } else {
                                 Toast.makeText(LoginActivity.this, "Authentication failed.",
                                         Toast.LENGTH_LONG).show();

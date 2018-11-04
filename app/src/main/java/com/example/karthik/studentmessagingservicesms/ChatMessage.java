@@ -61,8 +61,8 @@ public class ChatMessage extends AppCompatActivity{
 
         FirebaseUser user =  FirebaseAuth.getInstance().getCurrentUser();
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                .setDisplayName("Karthik Sankar").build();
-        //user.updateProfile(profileUpdates);
+                .setDisplayName("Franklin Yin").build();
+        user.updateProfile(profileUpdates);
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
