@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -122,11 +123,17 @@ public class MainActivity extends AppCompatActivity {
                                 }
 
                             }
+                            //first = false;
                             if(first) {
                                 first = false;
                                 for (int i = 0; i != userData.UnsedBlocks.size(); i++) {
-                                    DatabaseReference chat = database.getReference("message/" + school + "/" + ("" + Math.random()).substring(2));
+                                    String str = ("" + Math.random()).substring(2);
+                                    DatabaseReference chat = database.getReference("message/" + school + "/" + str);
                                     chat.setValue(new chat("PERIOD " + userData.UnsedBlocks.get(i), "" + userData.UnsedBlocks.get(i), userData.blocks.get(userData.UnsedBlocks.get(i))));
+                                    DatabaseReference chat2 = database.getReference("message/" + school + "/" + str+"/Messages/0");
+                                    chat2.setValue(new indivMessage("HI " , "SERVER","SERVER"));
+                                    DatabaseReference chat3 = database.getReference("message/" + school + "/" + str+"/Members/"+FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                    chat3.setValue(new Date().getTime());
                                 }
                             }
                             adapter.notifyDataSetChanged();
