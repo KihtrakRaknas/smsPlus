@@ -28,7 +28,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/school"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -47,35 +47,9 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="173dp"
-        android:layout_marginLeft="173dp"
-        android:layout_marginTop="376dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
         android:text="Next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button5"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="311dp"
-        android:layout_marginBottom="16dp"
-        android:text="Prev"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/school" />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="254dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="38dp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 </android.support.constraint.ConstraintLayout>
