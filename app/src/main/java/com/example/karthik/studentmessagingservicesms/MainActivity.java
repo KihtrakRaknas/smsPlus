@@ -32,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
     Intent intentSignedOut;
     Intent intentChat;
 
+    User userData=null;
+
+    String school;
+
     Intent newChat;
     DrawerLayout mDrawerLayout;
 
@@ -46,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
+
+    Boolean first = true;
+
+    DatabaseReference myUserRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,35 +85,58 @@ public class MainActivity extends AppCompatActivity {
         if(user == null){
             startActivity(intentSignedOut);
         }else{
-            String school = "South Brunswick High School";
-            myRef = database.getReference("message/"+school);
-
-            myRef.addValueEventListener(new ValueEventListener() {
+            myUserRef= database.getReference("user/"+FirebaseAuth.getInstance().getCurrentUser().getUid());
+            myUserRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    while(chats.size()!=0) {
-                        chats.remove(0);
-                        lastMessageInChat.remove(0);
-                        lastMessageInChatTimeStamp.remove(0);
-                        userTimeStamp.remove(0);
-                        chatID.remove(0);
-                    }
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    userData = dataSnapshot.getValue(User.class);
 
 
-                        for (DataSnapshot user : snapshot.child("Members").getChildren()) {
-                            if(user.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
-                                chats.add(snapshot.child("Name").getValue().toString());
-                                chatID.add(snapshot.getKey());
-                                lastMessageInChat.add(snapshot.child("Messages").child(""+(snapshot.child("Messages").getChildrenCount()-1)).child("messageUser").getValue().toString()+": "+snapshot.child("Messages").child(""+(snapshot.child("Messages").getChildrenCount()-1)).child("messageText").getValue().toString());
-                                lastMessageInChatTimeStamp.add(snapshot.child("Messages").child(""+(snapshot.child("Messages").getChildrenCount()-1)).child("messageTime").getValue().toString() );
-                                userTimeStamp.add(user.getValue().toString());
-                                break;
+                    school = "South Brunswick High School";
+                    myRef = database.getReference("message/"+school);
+
+                    myRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            while(chats.size()!=0) {
+                                chats.remove(0);
+                                lastMessageInChat.remove(0);
+                                lastMessageInChatTimeStamp.remove(0);
+                                userTimeStamp.remove(0);
+                                chatID.remove(0);
                             }
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+
+                                for (DataSnapshot user : snapshot.child("Members").getChildren()) {
+                                    boolean keysmatch = user.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                    boolean blockmatch = userData.blockCheck(snapshot.child("period").getValue(String.class), snapshot.child("room").getValue(String.class));
+                                    if(keysmatch||blockmatch){
+                                        chats.add(snapshot.child("Name").getValue().toString());
+                                        chatID.add(snapshot.getKey());
+                                        lastMessageInChat.add(snapshot.child("Messages").child(""+(snapshot.child("Messages").getChildrenCount()-1)).child("messageUser").getValue().toString()+": "+snapshot.child("Messages").child(""+(snapshot.child("Messages").getChildrenCount()-1)).child("messageText").getValue().toString());
+                                        lastMessageInChatTimeStamp.add(snapshot.child("Messages").child(""+(snapshot.child("Messages").getChildrenCount()-1)).child("messageTime").getValue().toString() );
+                                        userTimeStamp.add(user.getValue().toString());
+                                        break;
+                                    }
+                                }
+
+                            }
+                            if(first) {
+                                first = false;
+                                for (int i = 0; i != userData.UnsedBlocks.size(); i++) {
+                                    DatabaseReference chat = database.getReference("message/" + school + "/" + ("" + Math.random()).substring(2));
+                                    chat.setValue(new chat("PERIOD" + userData.UnsedBlocks.get(i), "" + userData.UnsedBlocks.get(i), userData.blocks.get(userData.UnsedBlocks.get(i))));
+                                }
+                            }
+
                         }
 
-                    }
-                    adapter.notifyDataSetChanged();
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
 
                 @Override
@@ -113,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             });
+
 
             adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, android.R.id.text1, chats) {
                 @Override

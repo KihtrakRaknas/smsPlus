@@ -170,5 +170,7 @@ public class school_class_selector extends AppCompatActivity{
         String profile = intent.getStringExtra("profile");
         User user = new User(name,profile,school,blocks);
         myRef.setValue(user);
+        Intent main = new Intent(school_class_selector.this,MainActivity.class);
+        startActivity(main);
     }
 }
