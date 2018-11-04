@@ -192,6 +192,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="sumbit"
+        android:background="@drawable/rounded_button"
         android:text="SUMBIT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
