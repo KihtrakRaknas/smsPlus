@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("yeet",""+menuItem.getItemId());
                 if(menuItem.getItemId()==R.id.nav_sign_out){
                     FirebaseAuth.getInstance().signOut();
-                    //startActivity(intentSignedOut);
+                    startActivity(intentSignedOut);
                 }
                 // close drawer when item is tapped
                 //mDrawerLayout.closeDrawers();
