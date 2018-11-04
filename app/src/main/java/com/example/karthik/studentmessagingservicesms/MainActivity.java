@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
                     while(chats.size()!=0) {
                         chats.remove(0);
                         lastMessageInChat.remove(0);
+                        lastMessageInChatTimeStamp.remove(0);
+                        userTimeStamp.remove(0);
                     }
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
@@ -115,9 +117,14 @@ public class MainActivity extends AppCompatActivity {
 
                     text1.setText(chats.get(position));
                     text2.setText(lastMessageInChat.get(position));
-                    if(Integer.parseInt(lastMessageInChat.get(position)) > Integer.parseInt(userTimeStamp.get(position))) {
+                    Log.d("HELPYEET",lastMessageInChatTimeStamp.get(position)+";"+userTimeStamp.get(position));
+                    if(Long.parseLong(lastMessageInChatTimeStamp.get(position)) > Long.parseLong(userTimeStamp.get(position))) {
                         text1.setTypeface(null, Typeface.BOLD);
                         text2.setTypeface(null, Typeface.BOLD);
+
+                    }else{
+                        text1.setTypeface(null, Typeface.NORMAL);
+                        text2.setTypeface(null, Typeface.NORMAL);
                     }
                     return view;
                 }

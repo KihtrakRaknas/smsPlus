@@ -58,7 +58,12 @@ public class ChatMessage extends AppCompatActivity{
         android.support.v7.widget.Toolbar tool = findViewById(R.id.my_toolbar);
         tool.setTitle(chat);
         scrollView = findViewById(R.id.scroll);
-
+        scrollView.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                            }
+                        });
         String school = "South Brunswick High School";
         myRef = database.getReference("message/"+school+"/"+chat+"/Messages");
         myUserRef = database.getReference("message/"+school+"/"+chat+"/Members/"+FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -88,7 +93,8 @@ public class ChatMessage extends AppCompatActivity{
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                myUserRef.setValue(new Date().getTime());
+                Long time = new Date().getTime();
+                myUserRef.setValue(time);
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 list.removeAllViews();
