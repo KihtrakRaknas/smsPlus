@@ -33,15 +33,16 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 // set item as selected to persist highlight
                 menuItem.setChecked(true);
-                // close drawer when item is tapped
-                mDrawerLayout.closeDrawers();
 
                 // Add code here to update the UI based on the item selected
                 // For example, swap UI fragments here
                 Log.d("yeet",""+menuItem.getItemId());
                 if(menuItem.getItemId()==R.id.nav_sign_out){
-
+                    FirebaseAuth.getInstance().signOut();
+                    //startActivity(intentSignedOut);
                 }
+                // close drawer when item is tapped
+                //mDrawerLayout.closeDrawers();
                 return true;
             }
         });
