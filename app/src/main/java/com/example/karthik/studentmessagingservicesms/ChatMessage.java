@@ -50,7 +50,7 @@ public class ChatMessage extends AppCompatActivity{
                         FirebaseAuth.getInstance()
                                 .getCurrentUser()
                                 .getDisplayName());
-                myRef.child(""+maxIndex+1).setValue(mess);
+                myRef.child(""+(maxIndex+1)).setValue(mess);
 
                 // Clear the input
                 input.setText("");
