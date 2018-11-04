@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,14 +80,17 @@ public class ChatMessage extends AppCompatActivity{
                 indivMessage oldMess = null;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     int index = Integer.parseInt(snapshot.getKey());
-                    if(index>maxIndex)
-                    maxIndex=index;
+                    if (index > maxIndex)
+                        maxIndex = index;
 
                     indivMessage mess = snapshot.getValue(indivMessage.class);
 
-                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-                    if(oldMess == null || !oldMess.messageUser.equals(mess.messageUser)) {
+                    LinearLayout.LayoutParams params3 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    params3.gravity = Gravity.RIGHT;
+
+                    if ((oldMess == null || !oldMess.messageUser.equals(mess.messageUser)) && user.getUid() != mess.UID) {
                         TextView name = new TextView(ChatMessage.this);
                         name.setLayoutParams(params);
                         name.setText(mess.messageUser);
@@ -97,13 +101,15 @@ public class ChatMessage extends AppCompatActivity{
                     TextView message = new TextView(ChatMessage.this);
                     message.setBackground(getDrawable(R.drawable.rounded_rectangle_orange));
                     message.setLayoutParams(params);
-                    params.setMargins(10,10,10,10);
+                    params.setMargins(10, 10, 10, 10);
                     int paddingDp = 8;
                     float density = ChatMessage.this.getResources().getDisplayMetrics().density;
-                    int paddingPixel = (int)(paddingDp * density);
-                    message.setPadding(paddingPixel,paddingPixel,paddingPixel,paddingPixel);
+                    int paddingPixel = (int) (paddingDp * density);
+                    message.setPadding(paddingPixel, paddingPixel, paddingPixel, paddingPixel);
                     message.setText(mess.messageText);
-
+                    if (user.getUid().equals(mess.UID)){
+                        message.setLayoutParams(params3);
+                    }
                     list.addView(message);
 
                     if(oldMess == null || mess.messageTime-oldMess.messageTime > 60000) {
@@ -118,6 +124,11 @@ public class ChatMessage extends AppCompatActivity{
                         LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                         params2.setMargins(50, 0, 0, 0);
                         timestamp.setLayoutParams(params2);
+
+                        if (user.getUid().equals(mess.UID)){
+                            timestamp.setLayoutParams(params3);
+                        }
+
                         list.addView(timestamp);
                     }
 
