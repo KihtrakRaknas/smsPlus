@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,12 +39,12 @@ import com.google.firebase.database.ValueEventListener;
 public class ChatMessage extends AppCompatActivity{
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
+    DatabaseReference myUserRef;
     LinearLayout list;
     FirebaseUser user;
     ScrollView scrollView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
     int maxIndex=-1;
 
     @Override
@@ -53,11 +54,13 @@ public class ChatMessage extends AppCompatActivity{
 
         Intent intent = getIntent();
         String chat = intent.getStringExtra("chat");
-
+        String chatID = intent.getStringExtra("chatID");
+        android.support.v7.widget.Toolbar tool = findViewById(R.id.my_toolbar);
+        tool.setTitle(chat);
         scrollView = findViewById(R.id.scroll);
-
-
-        myRef = database.getReference("message/"+chat+"Messages");
+        String school = "South Brunswick High School";
+        myRef = database.getReference("message/"+school+"/"+chatID+"/Messages");
+        myUserRef = database.getReference("message/"+school+"/"+chatID+"/Members/"+FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         FloatingActionButton fab = findViewById(R.id.fab);
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -84,6 +87,8 @@ public class ChatMessage extends AppCompatActivity{
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Long time = new Date().getTime();
+                myUserRef.setValue(time);
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 list.removeAllViews();
