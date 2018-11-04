@@ -32,6 +32,7 @@
         <activity android:name=".LoginActivity"/>
         <activity android:name=".ChatMessage"/>
         <activity android:name=".school_class_selector"/>
+        <activity android:name=".NewChat"/>
     </application>
 
 </manifest>

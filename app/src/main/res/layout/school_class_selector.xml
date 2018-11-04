@@ -8,88 +8,65 @@
     tools:context=".school_class_selector">
 
     <EditText
-        android:id="@+id/bday2"
-        android:layout_width="174dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="5"
-        android:inputType="text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aday4" />
-
-    <EditText
-        android:id="@+id/aday2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="77dp"
-        android:layout_weight="5"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aday1" />
-
-    <EditText
-        android:id="@+id/bday4"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_weight="5"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/aday4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="5"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aday2" />
-
-    <EditText
-        android:id="@+id/bday3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="91dp"
-        android:layout_weight="5"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aday3" />
-
-    <EditText
-        android:id="@+id/aday3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
-        android:layout_weight="5"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bday2" />
-
-    <EditText
-        android:id="@+id/bday1"
-        android:layout_width="105dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_weight="2.5"
-        android:gravity="center_horizontal"
-        android:inputType="text"
-        app:layout_constraintEnd_toStartOf="@+id/aday4"
-        app:layout_constraintTop_toBottomOf="@+id/aday2" />
-
-    <EditText
-        android:id="@+id/aday1"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-        android:inputType="text"
-        app:layout_constraintEnd_toStartOf="@+id/bday4"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/editText3"
+        android:layout_width="102dp"
+        android:layout_height="59dp"
+        android:ems="10"
+        android:hint="Room #"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        tools:layout_editor_absoluteY="203dp" />
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
-        android:layout_height="16dp"
-        android:layout_marginEnd="224dp"
-        android:layout_marginTop="14dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bday4" />
+        android:layout_height="wrap_content"
+        android:text="2nd"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="175dp" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="A Day"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="B Day"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1st"
+        app:layout_constraintBottom_toBottomOf="@+id/editText2"
+        app:layout_constraintTop_toTopOf="@+id/editText2"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="102dp"
+        android:layout_height="59dp"
+        android:ems="10"
+        android:hint="Room #"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        tools:layout_editor_absoluteY="58dp" />
 </android.support.constraint.ConstraintLayout>

@@ -154,12 +154,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        newChat = Intent(this,)
+        newChat = new Intent(this, NewChat.class);
+
         FloatingActionButton fabAdd = findViewById(R.id.fabAdd);
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActvity(newChat);
+                startActivity(newChat);
             }
         });
 
