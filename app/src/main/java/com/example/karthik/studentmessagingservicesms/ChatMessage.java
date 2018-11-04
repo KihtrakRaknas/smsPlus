@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -53,11 +54,12 @@ public class ChatMessage extends AppCompatActivity{
 
         Intent intent = getIntent();
         String chat = intent.getStringExtra("chat");
-
+        Toolbar tool = findViewById(R.id.my_toolbar);
+        tool.setTitle(chat);
         scrollView = findViewById(R.id.scroll);
 
-
-        myRef = database.getReference("message/"+chat+"/Messages");
+        String school = "South Brunswick High School";
+        myRef = database.getReference("message/"+school+"/"+chat+"/Messages");
 
         FloatingActionButton fab = findViewById(R.id.fab);
         user = FirebaseAuth.getInstance().getCurrentUser();

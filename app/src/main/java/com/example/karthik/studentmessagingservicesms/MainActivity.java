@@ -67,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
         if(user == null){
             startActivity(intentSignedOut);
         }else{
-            myRef = database.getReference("message");
+            String school = "South Brunswick High School";
+            myRef = database.getReference("message/"+school);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -75,7 +76,14 @@ public class MainActivity extends AppCompatActivity {
                     while(chats.size()!=0)
                         chats.remove(0);
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        chats.add(snapshot.getKey());
+
+
+                        for (DataSnapshot user : snapshot.child("Members").getChildren()) {
+                            if(user.getValue().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+                                chats.add(snapshot.getKey());
+                                break;
+                            }
+                        }
 
                     }
                     arrayAdapter.notifyDataSetChanged();
