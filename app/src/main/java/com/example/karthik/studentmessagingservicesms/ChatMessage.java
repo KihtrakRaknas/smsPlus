@@ -4,10 +4,13 @@ import android.os.Bundle;
 
 import java.util.Date;
 
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -82,10 +85,33 @@ public class ChatMessage extends AppCompatActivity{
                     indivMessage mess = snapshot.getValue(indivMessage.class);
 
                     TextView message = new TextView(ChatMessage.this);
-                    //message.setLayoutParams(new LayoutParams());
+                    message.setBackground(getDrawable(R.drawable.rounded_rectangle_orange));
+                    ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT,ConstraintLayout.LayoutParams.WRAP_CONTENT);
+                    message.setLayoutParams(params);
+                    params.setMargins(10,10,10,10);
+                    int paddingDp = 8;
+                    float density = ChatMessage.this.getResources().getDisplayMetrics().density;
+                    int paddingPixel = (int)(paddingDp * density);
+                    message.setPadding(paddingPixel,paddingPixel,paddingPixel,paddingPixel);
                     message.setText(mess.messageText);
 
-                    list.addView(message);
+                    //list.addView(message);
+
+                    TextView timestamp = new TextView(ChatMessage.this);
+                    timestamp.setText(mess.messageTime);
+                    timestamp.setLayoutParams(params);
+                    timestamp.setTextSize(TypedValue.COMPLEX_UNIT_SP,10);
+
+
+
+                    ConstraintLayout newLay = new ConstraintLayout(ChatMessage.this);
+                    newLay.addView(message);
+                    LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+                    params2.setMargins(5,5,5,5);
+                    newLay.setLayoutParams(params2);
+                    //newLay.setPadding(paddingPixel,paddingPixel,paddingPixel,paddingPixel);
+
+                    list.addView(newLay);
                 }
                 //String value = dataSnapshot.getValue(String.class);
                 //Log.d("READDATA", "Value is: " + value);
