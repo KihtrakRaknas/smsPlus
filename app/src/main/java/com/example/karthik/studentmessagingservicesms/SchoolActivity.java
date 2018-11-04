@@ -25,7 +25,7 @@ public class SchoolActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_school);
             sb=findViewById(R.id.southBruns);
-            intent=new Intent(this, school_class_selector.class);
+            intent=new Intent(this, ProfileSetUp.class);
             sb.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
