@@ -28,7 +28,7 @@ public class ChatMessage extends AppCompatActivity{
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
     LinearLayout list;
-    int maxIndex=0;
+    int maxIndex=-1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
