@@ -16,7 +16,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
     Intent intentSignedOut;
     Intent intentChat;
-    TextView text;
     DrawerLayout mDrawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         intentSignedOut = new Intent(this,landing.class);
         intentChat = new Intent(this,ChatMessage.class);
-        text = findViewById(R.id.id_text);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         NavigationView navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
@@ -54,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        text.setText(auth.getUid());
     }
 
     public void signOut(View v){
