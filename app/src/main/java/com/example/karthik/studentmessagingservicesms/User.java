@@ -1,5 +1,7 @@
 package com.example.karthik.studentmessagingservicesms;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,7 @@ public class User {
     }
 
     public boolean blockCheck(String block, String room){
+        //Log.d("TESTYEET",blocks.toString());
         if(blocks.get(Integer.parseInt(block)).equals(room)) {
             for(int i = UnsedBlocks.size()-1;i!=-1;i--)
                 if(UnsedBlocks.get(i)==Integer.parseInt(block))

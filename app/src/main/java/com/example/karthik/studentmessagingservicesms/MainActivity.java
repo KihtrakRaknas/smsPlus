@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 for (DataSnapshot user : snapshot.child("Members").getChildren()) {
                                     boolean keysmatch = user.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid());
-                                    boolean blockmatch = userData.blockCheck(snapshot.child("period").getValue(String.class), snapshot.child("room").getValue(String.class));
+                                    boolean blockmatch = true;//userData.blockCheck(snapshot.child("block").getValue(String.class), snapshot.child("room").getValue(String.class));
                                     if(keysmatch||blockmatch){
                                         chats.add(snapshot.child("Name").getValue().toString());
                                         chatID.add(snapshot.getKey());
@@ -126,10 +126,10 @@ public class MainActivity extends AppCompatActivity {
                                 first = false;
                                 for (int i = 0; i != userData.UnsedBlocks.size(); i++) {
                                     DatabaseReference chat = database.getReference("message/" + school + "/" + ("" + Math.random()).substring(2));
-                                    chat.setValue(new chat("PERIOD" + userData.UnsedBlocks.get(i), "" + userData.UnsedBlocks.get(i), userData.blocks.get(userData.UnsedBlocks.get(i))));
+                                    chat.setValue(new chat("PERIOD " + userData.UnsedBlocks.get(i), "" + userData.UnsedBlocks.get(i), userData.blocks.get(userData.UnsedBlocks.get(i))));
                                 }
                             }
-
+                            adapter.notifyDataSetChanged();
                         }
 
                         @Override
