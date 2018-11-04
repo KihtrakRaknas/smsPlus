@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -31,8 +32,10 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout mDrawerLayout;
 
     ArrayAdapter<String> arrayAdapter;
+    ArrayAdapter adapter;
 
     List<String> chats = new ArrayList<String>();
+    List<String> lastMessageInChat = new ArrayList<String>();
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
@@ -73,20 +76,23 @@ public class MainActivity extends AppCompatActivity {
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    while(chats.size()!=0)
+                    while(chats.size()!=0) {
                         chats.remove(0);
+                        lastMessageInChat.remove(0);
+                    }
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
 
                         for (DataSnapshot user : snapshot.child("Members").getChildren()) {
-                            if(user.getValue().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+                            if(user.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
                                 chats.add(snapshot.getKey());
+                                lastMessageInChat.add(snapshot.child("Messages").child(""+(snapshot.child("Messages").getChildrenCount()-1)).child("messageUser").getValue().toString()+": "+snapshot.child("Messages").child(""+(snapshot.child("Messages").getChildrenCount()-1)).child("messageText").getValue().toString());
                                 break;
                             }
                         }
 
                     }
-                    arrayAdapter.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
                 }
 
                 @Override
@@ -95,10 +101,23 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+            adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, android.R.id.text1, chats) {
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent) {
+                    View view = super.getView(position, convertView, parent);
+                    TextView text1 = view.findViewById(android.R.id.text1);
+                    TextView text2 = view.findViewById(android.R.id.text2);
 
-            arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, chats);
+                    text1.setText(chats.get(position));
+                    text2.setText(lastMessageInChat.get(position));
+                    return view;
+                }
+            };
+
+            arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_2, chats);
             final ListView lv = findViewById(R.id.List);
-            lv.setAdapter(arrayAdapter);
+            //lv.setAdapter(arrayAdapter);
+            lv.setAdapter(adapter);
 
             lv.setOnItemClickListener(new ListView.OnItemClickListener() {
                 @Override
