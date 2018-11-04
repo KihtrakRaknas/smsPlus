@@ -103,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
+        intentChat.putExtra("chat","TESTERSMessages");
+        startActivity(intentChat);
     }
 
     public void signOut(View v){
