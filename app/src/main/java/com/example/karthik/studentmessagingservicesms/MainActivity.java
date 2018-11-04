@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -16,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     Intent intentSignedOut;
     Intent intentChat;
     TextView text;
-    private DrawerLayout mDrawerLayout;
+    DrawerLayout mDrawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
                 // Add code here to update the UI based on the item selected
                 // For example, swap UI fragments here
+                Log.d("yeet",""+menuItem.getItemId());
                 if(menuItem.getItemId()==R.id.nav_sign_out){
-                    FirebaseAuth.getInstance().signOut();
-                    startActivity(intentSignedOut);
+
                 }
                 return true;
             }
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         text.setText(auth.getUid());
     }
 
-    public void signUp(View v){
+    public void signOut(View v){
 
     }
 }
