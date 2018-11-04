@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         if(FirebaseAuth.getInstance().getCurrentUser() == null){
             startActivity(intentSignedOut);
         }else{
-            startActivity(intentSignedOut);
+            startActivity(intentChat);
         }
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
