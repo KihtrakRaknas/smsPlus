@@ -39,6 +39,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ChatMessage extends AppCompatActivity{
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
+    DatabaseReference myUserRef;
     LinearLayout list;
     FirebaseUser user;
     ScrollView scrollView;
@@ -60,6 +61,7 @@ public class ChatMessage extends AppCompatActivity{
 
         String school = "South Brunswick High School";
         myRef = database.getReference("message/"+school+"/"+chat+"/Messages");
+        myUserRef = database.getReference("message/"+school+"/"+chat+"/Members/"+FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         FloatingActionButton fab = findViewById(R.id.fab);
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -86,6 +88,7 @@ public class ChatMessage extends AppCompatActivity{
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                myUserRef.setValue(new Date().getTime());
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 list.removeAllViews();

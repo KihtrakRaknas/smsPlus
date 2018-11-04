@@ -1,6 +1,7 @@
 package com.example.karthik.studentmessagingservicesms;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     List<String> chats = new ArrayList<String>();
     List<String> lastMessageInChat = new ArrayList<String>();
+    List<String> lastMessageInChatTimeStamp = new ArrayList<String>();
+    List<String> userTimeStamp = new ArrayList<String>();
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
@@ -87,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
                             if(user.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
                                 chats.add(snapshot.getKey());
                                 lastMessageInChat.add(snapshot.child("Messages").child(""+(snapshot.child("Messages").getChildrenCount()-1)).child("messageUser").getValue().toString()+": "+snapshot.child("Messages").child(""+(snapshot.child("Messages").getChildrenCount()-1)).child("messageText").getValue().toString());
+                                lastMessageInChatTimeStamp.add(snapshot.child("Messages").child(""+(snapshot.child("Messages").getChildrenCount()-1)).child("messageTime").getValue().toString() );
+                                userTimeStamp.add(user.getValue().toString());
                                 break;
                             }
                         }
@@ -110,6 +115,10 @@ public class MainActivity extends AppCompatActivity {
 
                     text1.setText(chats.get(position));
                     text2.setText(lastMessageInChat.get(position));
+                    if(Integer.parseInt(lastMessageInChat.get(position)) > Integer.parseInt(userTimeStamp.get(position))) {
+                        text1.setTypeface(null, Typeface.BOLD);
+                        text2.setTypeface(null, Typeface.BOLD);
+                    }
                     return view;
                 }
             };
