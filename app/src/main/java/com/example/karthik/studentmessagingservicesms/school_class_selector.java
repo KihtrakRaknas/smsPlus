@@ -24,6 +24,8 @@ public class school_class_selector extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.school_class_selector);
+        for(int i =0 ; i!=8;i++)
+        blocks.add("");
         myRef = database.getReference("user/"+FirebaseAuth.getInstance().getCurrentUser().getUid());
         ((EditText)findViewById(R.id.block1)).addTextChangedListener(new TextWatcher() {
             @Override
