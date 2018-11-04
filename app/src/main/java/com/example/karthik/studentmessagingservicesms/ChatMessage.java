@@ -54,7 +54,7 @@ public class ChatMessage extends AppCompatActivity{
 
         Intent intent = getIntent();
         String chat = intent.getStringExtra("chat");
-        Toolbar tool = findViewById(R.id.my_toolbar);
+        android.support.v7.widget.Toolbar tool = findViewById(R.id.my_toolbar);
         tool.setTitle(chat);
         scrollView = findViewById(R.id.scroll);
 
