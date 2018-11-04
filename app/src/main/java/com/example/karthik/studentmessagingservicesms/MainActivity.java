@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     List<String> lastMessageInChat = new ArrayList<String>();
     List<String> lastMessageInChatTimeStamp = new ArrayList<String>();
     List<String> userTimeStamp = new ArrayList<String>();
+    List<String> chatID = new ArrayList<String>();
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
@@ -84,13 +85,15 @@ public class MainActivity extends AppCompatActivity {
                         lastMessageInChat.remove(0);
                         lastMessageInChatTimeStamp.remove(0);
                         userTimeStamp.remove(0);
+                        chatID.remove(0);
                     }
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
 
                         for (DataSnapshot user : snapshot.child("Members").getChildren()) {
                             if(user.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
-                                chats.add(snapshot.getKey());
+                                chats.add(snapshot.child("Name").getValue().toString());
+                                chatID.add(snapshot.getKey());
                                 lastMessageInChat.add(snapshot.child("Messages").child(""+(snapshot.child("Messages").getChildrenCount()-1)).child("messageUser").getValue().toString()+": "+snapshot.child("Messages").child(""+(snapshot.child("Messages").getChildrenCount()-1)).child("messageText").getValue().toString());
                                 lastMessageInChatTimeStamp.add(snapshot.child("Messages").child(""+(snapshot.child("Messages").getChildrenCount()-1)).child("messageTime").getValue().toString() );
                                 userTimeStamp.add(user.getValue().toString());
@@ -138,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
             lv.setOnItemClickListener(new ListView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    intentChat.putExtra("chatID",chatID.get(position));
                     intentChat.putExtra("chat",chats.get(position));
                     startActivity(intentChat);
                 }
@@ -147,8 +151,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        intentChat.putExtra("chat","TESTERS");
-        startActivity(intentChat);
+        //intentChat.putExtra("chatID","TESTERS");
+        //intentChat.putExtra("chat","TEST");
+        //startActivity(intentChat);
     }
 
     public void signOut(View v){

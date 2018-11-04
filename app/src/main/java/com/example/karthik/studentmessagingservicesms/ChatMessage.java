@@ -55,18 +55,13 @@ public class ChatMessage extends AppCompatActivity{
 
         Intent intent = getIntent();
         String chat = intent.getStringExtra("chat");
+        String chatID = intent.getStringExtra("chatID");
         android.support.v7.widget.Toolbar tool = findViewById(R.id.my_toolbar);
         tool.setTitle(chat);
         scrollView = findViewById(R.id.scroll);
-        scrollView.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                scrollView.fullScroll(ScrollView.FOCUS_DOWN);
-                            }
-                        });
         String school = "South Brunswick High School";
-        myRef = database.getReference("message/"+school+"/"+chat+"/Messages");
-        myUserRef = database.getReference("message/"+school+"/"+chat+"/Members/"+FirebaseAuth.getInstance().getCurrentUser().getUid());
+        myRef = database.getReference("message/"+school+"/"+chatID+"/Messages");
+        myUserRef = database.getReference("message/"+school+"/"+chatID+"/Members/"+FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         FloatingActionButton fab = findViewById(R.id.fab);
         user = FirebaseAuth.getInstance().getCurrentUser();
