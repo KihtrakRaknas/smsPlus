@@ -68,11 +68,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intentSignedOut);
         }else{
             myRef = database.getReference("message");
-            while(chats.size()!=0)
-                chats.remove(0);
+
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    while(chats.size()!=0)
+                        chats.remove(0);
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         chats.add(snapshot.getKey());
 
@@ -103,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
+        intentChat.putExtra("chat","TESTERS");
+        startActivity(intentChat);
     }
 
     public void signOut(View v){
