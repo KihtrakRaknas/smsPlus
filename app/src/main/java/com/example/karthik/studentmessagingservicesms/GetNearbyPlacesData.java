@@ -2,6 +2,7 @@ package com.example.karthik.studentmessagingservicesms;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -44,7 +45,8 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
                         list.add(googlePlacesData.substring(x + 10, y));
                 }
             }
-            Log.d("pleasework", list.get(0));
         }
+        Log.d("pleasework",list.toString());
+
     }
 }
