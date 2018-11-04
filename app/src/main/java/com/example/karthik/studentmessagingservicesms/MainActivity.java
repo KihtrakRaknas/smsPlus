@@ -10,14 +10,21 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     Intent intentSignedOut;
+    Intent intentChat;
     TextView text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        intentSignedOut = new Intent(this,ChatMessage.class);
+        intentSignedOut = new Intent(this,landing.class);
+        intentChat = new Intent(this,ChatMessage.class);
         text = findViewById(R.id.id_text);
-        startActivity(intentSignedOut);
+        if(FirebaseAuth.getInstance().getCurrentUser() == null){
+            startActivity(intentSignedOut);
+        }else{
+            startActivity(intentSignedOut);
+        }
+
         FirebaseAuth auth = FirebaseAuth.getInstance();
         text.setText(auth.getUid());
     }
