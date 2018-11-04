@@ -104,8 +104,8 @@ public class ChatMessage extends AppCompatActivity{
                     timestamp.setTextSize(TypedValue.COMPLEX_UNIT_SP,8);
 
                     LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
-                    params2.setMargins(10,0,0,0);
-                    message.setLayoutParams(params2);
+                    params2.setMargins(30,0,0,0);
+                    timestamp.setLayoutParams(params2);
 
                     list.addView(timestamp);
                 }
