@@ -5,11 +5,13 @@ import java.util.Date;
 public class indivMessage {
     public String messageText;
     public String messageUser;
+    public String UID;
     public long messageTime;
 
-    public indivMessage(String messageText, String messageUser) {
+    public indivMessage(String messageText, String messageUser, String UID) {
         this.messageText = messageText;
         this.messageUser = messageUser;
+        this.UID = UID;
 
         // Initialize to current time
         messageTime = new Date().getTime();

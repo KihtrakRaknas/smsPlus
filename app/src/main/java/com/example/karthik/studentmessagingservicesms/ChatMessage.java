@@ -2,6 +2,8 @@ package com.example.karthik.studentmessagingservicesms;
 
 import android.os.Bundle;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.support.constraint.ConstraintLayout;
@@ -33,7 +35,7 @@ public class ChatMessage extends AppCompatActivity{
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
     LinearLayout list;
-
+    FirebaseUser user;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
@@ -47,7 +49,7 @@ public class ChatMessage extends AppCompatActivity{
         myRef = database.getReference("message");
 
         FloatingActionButton fab = findViewById(R.id.fab);
-
+        user = FirebaseAuth.getInstance().getCurrentUser();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,10 +57,7 @@ public class ChatMessage extends AppCompatActivity{
 
                 // Read the input field and push a new instance
                 // of ChatMessage to the Firebase database
-                indivMessage mess = new indivMessage(input.getText().toString(),
-                        FirebaseAuth.getInstance()
-                                .getCurrentUser()
-                                .getDisplayName());
+                indivMessage mess = new indivMessage(input.getText().toString(),user.getDisplayName(),user.getUid());
                 myRef.child(""+(maxIndex+1)).setValue(mess);
 
                 // Clear the input
@@ -68,10 +67,8 @@ public class ChatMessage extends AppCompatActivity{
 
         list = findViewById(R.id.list_messages);
 
-        FirebaseUser user =  FirebaseAuth.getInstance().getCurrentUser();
-        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                .setDisplayName("Franklin Yin").build();
-        user.updateProfile(profileUpdates);
+        //UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName("Karthik Sankar").build();
+        //user.updateProfile(profileUpdates);
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -79,15 +76,26 @@ public class ChatMessage extends AppCompatActivity{
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 list.removeAllViews();
+                indivMessage oldMess = null;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     int index = Integer.parseInt(snapshot.getKey());
                     if(index>maxIndex)
                     maxIndex=index;
+
                     indivMessage mess = snapshot.getValue(indivMessage.class);
+
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+
+                    if(oldMess == null || !oldMess.messageUser.equals(mess.messageUser)) {
+                        TextView name = new TextView(ChatMessage.this);
+                        name.setLayoutParams(params);
+                        name.setText(mess.messageUser);
+                        name.setTextSize(TypedValue.COMPLEX_UNIT_SP, 8);
+                        list.addView(name);
+                    }
 
                     TextView message = new TextView(ChatMessage.this);
                     message.setBackground(getDrawable(R.drawable.rounded_rectangle_orange));
-                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
                     message.setLayoutParams(params);
                     params.setMargins(10,10,10,10);
                     int paddingDp = 8;
@@ -98,16 +106,24 @@ public class ChatMessage extends AppCompatActivity{
 
                     list.addView(message);
 
-                    TextView timestamp = new TextView(ChatMessage.this);
-                    timestamp.setText(""+mess.messageTime);
-                    timestamp.setLayoutParams(params);
-                    timestamp.setTextSize(TypedValue.COMPLEX_UNIT_SP,8);
+                    if(oldMess == null || mess.messageTime-oldMess.messageTime > 60000) {
+                        TextView timestamp = new TextView(ChatMessage.this);
+                        Date date = new Date(mess.messageTime);
+                        DateFormat formatter = new SimpleDateFormat("h:mm a");
+                        String dateFormatted = formatter.format(date);
+                        timestamp.setText(dateFormatted);
+                        timestamp.setLayoutParams(params);
+                        timestamp.setTextSize(TypedValue.COMPLEX_UNIT_SP, 8);
 
-                    LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
-                    params2.setMargins(30,0,0,0);
-                    timestamp.setLayoutParams(params2);
+                        LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        params2.setMargins(50, 0, 0, 0);
+                        timestamp.setLayoutParams(params2);
+                        list.addView(timestamp);
+                    }
 
-                    list.addView(timestamp);
+
+
+                    oldMess = mess;
                 }
                 //String value = dataSnapshot.getValue(String.class);
                 //Log.d("READDATA", "Value is: " + value);
