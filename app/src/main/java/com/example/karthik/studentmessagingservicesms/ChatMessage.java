@@ -87,10 +87,9 @@ public class ChatMessage extends AppCompatActivity{
 
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-                    LinearLayout.LayoutParams params3 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    params3.gravity = Gravity.RIGHT;
 
-                    if ((oldMess == null || !oldMess.messageUser.equals(mess.messageUser)) && user.getUid() != mess.UID) {
+
+                    if ((oldMess == null || !oldMess.messageUser.equals(mess.messageUser)) && !user.getUid().equals(mess.UID)) {
                         TextView name = new TextView(ChatMessage.this);
                         name.setLayoutParams(params);
                         name.setText(mess.messageUser);
@@ -100,16 +99,17 @@ public class ChatMessage extends AppCompatActivity{
 
                     TextView message = new TextView(ChatMessage.this);
                     message.setBackground(getDrawable(R.drawable.rounded_rectangle_orange));
-                    message.setLayoutParams(params);
-                    params.setMargins(10, 10, 10, 10);
+                    params.setMargins(10, 7, 7, 10);
                     int paddingDp = 8;
                     float density = ChatMessage.this.getResources().getDisplayMetrics().density;
                     int paddingPixel = (int) (paddingDp * density);
                     message.setPadding(paddingPixel, paddingPixel, paddingPixel, paddingPixel);
                     message.setText(mess.messageText);
                     if (user.getUid().equals(mess.UID)){
-                        message.setLayoutParams(params3);
+                        params.gravity = Gravity.RIGHT;
+                        message.setBackground(getDrawable(R.drawable.rounded_rectangle_blue));
                     }
+                    message.setLayoutParams(params);
                     list.addView(message);
 
                     if(oldMess == null || mess.messageTime-oldMess.messageTime > 60000) {
@@ -122,13 +122,12 @@ public class ChatMessage extends AppCompatActivity{
                         timestamp.setTextSize(TypedValue.COMPLEX_UNIT_SP, 8);
 
                         LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                        params2.setMargins(50, 0, 0, 0);
-                        timestamp.setLayoutParams(params2);
+                        params2.setMargins(50, 0, 50, 0);
 
                         if (user.getUid().equals(mess.UID)){
-                            timestamp.setLayoutParams(params3);
+                            params2.gravity = Gravity.RIGHT;
                         }
-
+                        timestamp.setLayoutParams(params2);
                         list.addView(timestamp);
                     }
 
