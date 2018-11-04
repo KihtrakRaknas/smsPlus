@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 for (DataSnapshot user : snapshot.child("Members").getChildren()) {
                                     boolean keysmatch = user.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid());
-                                    boolean blockmatch = true;//userData.blockCheck(snapshot.child("block").getValue(String.class), snapshot.child("room").getValue(String.class));
+                                    boolean blockmatch = userData.blockCheck(snapshot.child("block").getValue(String.class), snapshot.child("room").getValue(String.class));
                                     if(keysmatch||blockmatch){
                                         chats.add(snapshot.child("Name").getValue().toString());
                                         chatID.add(snapshot.getKey());
