@@ -17,7 +17,7 @@
         android:ems="10"
         android:hint="Room #"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/button9"
+        app:layout_constraintBottom_toTopOf="@+id/button10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/block4"
         app:layout_constraintTop_toBottomOf="@+id/block7" />
@@ -66,7 +66,7 @@
         android:ems="10"
         android:hint="Room #"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/button9"
+        app:layout_constraintBottom_toTopOf="@+id/button10"
         app:layout_constraintEnd_toStartOf="@+id/block8"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/block3" />
@@ -185,15 +185,16 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/button10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="sumbit"
-        android:text="Submit"
+        android:text="SUMBIT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
