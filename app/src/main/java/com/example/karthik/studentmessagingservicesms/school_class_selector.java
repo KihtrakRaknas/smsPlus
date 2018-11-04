@@ -12,10 +12,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class school_class_selector extends AppCompatActivity{
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
-    String[] blocks = new String[8];
+    List<String> blocks = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,7 @@ public class school_class_selector extends AppCompatActivity{
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                blocks[0] = s.toString();
+                blocks.set(0,s.toString());
             }
 
             @Override
@@ -47,7 +50,7 @@ public class school_class_selector extends AppCompatActivity{
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                blocks[1] = s.toString();
+                blocks.set(1,s.toString());
             }
 
             @Override
@@ -64,7 +67,7 @@ public class school_class_selector extends AppCompatActivity{
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                blocks[2] = s.toString();
+                blocks.set(2,s.toString());
             }
 
             @Override
@@ -81,7 +84,7 @@ public class school_class_selector extends AppCompatActivity{
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                blocks[3] = s.toString();
+                blocks.set(3,s.toString());
             }
 
             @Override
@@ -97,7 +100,7 @@ public class school_class_selector extends AppCompatActivity{
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                blocks[4] = s.toString();
+                blocks.set(4,s.toString());
             }
 
             @Override
@@ -114,7 +117,7 @@ public class school_class_selector extends AppCompatActivity{
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                blocks[5] = s.toString();
+                blocks.set(5,s.toString());
             }
 
             @Override
@@ -131,7 +134,7 @@ public class school_class_selector extends AppCompatActivity{
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                blocks[6] = s.toString();
+                blocks.set(6,s.toString());
             }
 
             @Override
@@ -148,7 +151,7 @@ public class school_class_selector extends AppCompatActivity{
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                blocks[7] = s.toString();
+                blocks.set(7,s.toString());
             }
 
             @Override
@@ -160,8 +163,10 @@ public class school_class_selector extends AppCompatActivity{
     }
     public void sumbit(View v){
         Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
         String school = intent.getStringExtra("school");
         String profile = intent.getStringExtra("profile");
-        myRef.setValue(new User(profile,school,blocks));
+        User user = new User(name,profile,school,blocks);
+        myRef.setValue(user);
     }
 }

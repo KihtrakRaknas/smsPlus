@@ -14,34 +14,15 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class SchoolActivity extends AppCompatActivity {
 
-    TextView name;
-    String namestr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_school);
-        name = findViewById(R.id.name);
-        name.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                namestr = s.toString();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
     }
 
-    public void next(View v){
+    public void nexter(View v){
         Intent intent = new Intent(SchoolActivity.this, ProfileSetUp.class);
         intent.putExtra("school","South Brunswick High School");
+        startActivity(intent);
     }
 }

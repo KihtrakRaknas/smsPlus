@@ -22,7 +22,7 @@
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="CHAT_NAME"
+            app:title="Chats"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="-1dp" />
 
