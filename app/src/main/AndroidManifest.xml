@@ -33,6 +33,7 @@
         <activity android:name=".ChatMessage"/>
         <activity android:name=".school_class_selector"/>
         <activity android:name=".NewChat"/>
+        <activity android:name=".ProfileSetUp"/>
     </application>
 
 </manifest>

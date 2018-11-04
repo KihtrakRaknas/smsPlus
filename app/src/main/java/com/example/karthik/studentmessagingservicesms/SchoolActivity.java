@@ -1,5 +1,6 @@
 package com.example.karthik.studentmessagingservicesms;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -39,10 +40,8 @@ public class SchoolActivity extends AppCompatActivity {
 
     }
 
-    public void saveName(View v){
-        FirebaseUser user =  FirebaseAuth.getInstance().getCurrentUser();
-        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                .setDisplayName(namestr).build();
-        user.updateProfile(profileUpdates);
+    public void next(View v){
+        Intent intent = new Intent(SchoolActivity.this, ProfileSetUp.class);
+        intent.putExtra("school","South Brunswick High School");
     }
 }
