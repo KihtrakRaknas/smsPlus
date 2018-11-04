@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                                 for (int i = 0; i != userData.UnsedBlocks.size(); i++) {
                                     String str = ("" + Math.random()).substring(2);
                                     DatabaseReference chat = database.getReference("message/" + school + "/" + str);
-                                    chat.setValue(new chat("PERIOD " + userData.UnsedBlocks.get(i), "" + userData.UnsedBlocks.get(i), userData.blocks.get(userData.UnsedBlocks.get(i))));
+                                    chat.setValue(new chat("Block " + (userData.UnsedBlocks.get(i)+1), "" + userData.UnsedBlocks.get(i), userData.blocks.get(userData.UnsedBlocks.get(i))));
                                     DatabaseReference chat2 = database.getReference("message/" + school + "/" + str+"/Messages/0");
                                     chat2.setValue(new indivMessage("HI " , "SERVER","SERVER"));
                                     DatabaseReference chat3 = database.getReference("message/" + school + "/" + str+"/Members/"+FirebaseAuth.getInstance().getCurrentUser().getUid());
