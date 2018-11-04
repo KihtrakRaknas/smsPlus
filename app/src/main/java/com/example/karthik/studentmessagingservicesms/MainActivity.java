@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +31,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     Intent intentSignedOut;
     Intent intentChat;
+
+    Intent newChat;
     DrawerLayout mDrawerLayout;
 
     ArrayAdapter<String> arrayAdapter;
@@ -150,10 +153,29 @@ public class MainActivity extends AppCompatActivity {
             ((TextView)headerView.findViewById(R.id.nav_view_name)).setText(user.getDisplayName());
         }
 
+
+        newChat = Intent(this,)
+        FloatingActionButton fabAdd = findViewById(R.id.fabAdd);
+        fabAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActvity(newChat);
+            }
+        });
+
+
+
         FirebaseAuth auth = FirebaseAuth.getInstance();
         //intentChat.putExtra("chatID","TESTERS");
         //intentChat.putExtra("chat","TEST");
         //startActivity(intentChat);
+
+
+
+
+
+
+
     }
 
     public void signOut(View v){
