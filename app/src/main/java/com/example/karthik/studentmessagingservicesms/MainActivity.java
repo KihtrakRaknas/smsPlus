@@ -24,6 +24,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.vansuita.materialabout.builder.AboutBuilder;
+import com.vansuita.materialabout.views.AboutView;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -53,12 +55,33 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference myRef;
 
     Boolean first = true;
+    AboutView view;
 
     DatabaseReference myUserRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        view = AboutBuilder.with(this)
+                .setPhoto(R.mipmap.profile_picture)
+                .setCover(R.mipmap.profile_cover)
+                .setName("Franklin Yin")
+                .setSubTitle("The Legend")
+                .setBrief("I'm a true legend.")
+                .setAppIcon(R.mipmap.ic_launcher)
+                .setAppName(R.string.app_name)
+                .addGooglePlayStoreLink("user")
+                .addGitHubLink("user")
+                .addFacebookLink("user")
+                .addFiveStarsAction()
+                .setVersionNameAsAppSubTitle()
+                .addShareAction(R.string.app_name)
+                .setWrapScrollView(true)
+                .setLinksAnimated(true)
+                .setShowAsCard(true)
+                .build();
+
 
         intentSignedOut = new Intent(this,landing.class);
         intentChat = new Intent(this,ChatMessage.class);
@@ -199,7 +222,9 @@ public class MainActivity extends AppCompatActivity {
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(newChat);
+                addContentView(view, new ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT));
             }
         });
 
