@@ -63,26 +63,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        view = AboutBuilder.with(this)
-                .setPhoto(R.mipmap.profile_picture)
-                .setCover(R.mipmap.profile_cover)
-                .setName("Franklin Yin")
-                .setSubTitle("The Legend")
-                .setBrief("I'm a true legend.")
-                .setAppIcon(R.mipmap.ic_launcher)
-                .setAppName(R.string.app_name)
-                .addGooglePlayStoreLink("user")
-                .addGitHubLink("user")
-                .addFacebookLink("user")
-                .addFiveStarsAction()
-                .setVersionNameAsAppSubTitle()
-                .addShareAction(R.string.app_name)
-                .setWrapScrollView(true)
-                .setLinksAnimated(true)
-                .setShowAsCard(true)
-                .build();
-
-
         intentSignedOut = new Intent(this,landing.class);
         intentChat = new Intent(this,ChatMessage.class);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -228,19 +208,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
         FirebaseAuth auth = FirebaseAuth.getInstance();
         //intentChat.putExtra("chatID","TESTERS");
         //intentChat.putExtra("chat","TEST");
         //startActivity(intentChat);
 
-
-
-
-
-
-
+        //I made them all strings so they can be easily editable. Maybe make a menu where users can add their social media
+        //usernames to their profile. This will build a link to that page since most sites make their profiles
+        //socialmediasite.com/username.
+        String name="Franklin Yin";
+        String insta="yinforthewin";
+        String facebook="Yin4TheWin";
+        String twitter="YinFranklin";
+        view = AboutBuilder.with(this)
+                .setPhoto(R.mipmap.profile_picture)
+                .setCover(R.mipmap.profile_cover)
+                .setName(name)
+                .setSubTitle("The Legend")
+                .setBrief("I'm a true legend.")
+                .setAppIcon(R.mipmap.ic_launcher)
+                .setAppName(R.string.app_name)
+                .addInstagramLink(insta)
+                .addTwitterLink(twitter)
+                .addFacebookLink(facebook)
+                .addFiveStarsAction()
+                .setVersionNameAsAppSubTitle()
+                .addShareAction(R.string.app_name)
+                .setWrapScrollView(true)
+                .setLinksAnimated(true)
+                .setShowAsCard(true)
+                .build();
     }
 
     public void signOut(View v){
