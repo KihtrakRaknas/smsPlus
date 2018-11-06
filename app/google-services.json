@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "202848572207-7mb7sk8t856nrq9vag8ts8841g5dn2ab.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.karthik.studentmessagingservicesms",
+            "certificate_hash": "2194c6efacff3a652eed34337f742570ad77b8c4"
+          }
+        },
+        {
           "client_id": "202848572207-8g5gh1vaumu14ql5g7d410j0dud6v0ig.apps.googleusercontent.com",
           "client_type": 3
         }

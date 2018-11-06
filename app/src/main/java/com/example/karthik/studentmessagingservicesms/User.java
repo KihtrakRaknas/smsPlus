@@ -2,6 +2,8 @@ package com.example.karthik.studentmessagingservicesms;
 
 import android.util.Log;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ public class User {
     public String name;
     public String profile;
     public String school;
+    public String messagingUID;
     public List<String> blocks;
     public List<Integer> UnsedBlocks= new ArrayList<Integer>();
     public User(){
@@ -21,6 +24,7 @@ public class User {
         this.profile = profile;
         this.school=school;
         this.blocks = blocks;
+        messagingUID = MyFirebaseInstanceIDService.token;
         for(int i =0;i!=8;i++)
             UnsedBlocks.add(i);
     }

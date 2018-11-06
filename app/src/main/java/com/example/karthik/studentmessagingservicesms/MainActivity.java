@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.vansuita.materialabout.builder.AboutBuilder;
 import com.vansuita.materialabout.views.AboutView;
 
@@ -63,7 +64,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        intentSignedOut = new Intent(this,landing.class);
+        //Log.d("TokenYEET", "Refreshed token: " + FirebaseInstanceId.getInstance().getToken(););
+
+                intentSignedOut = new Intent(this,landing.class);
         intentChat = new Intent(this,ChatMessage.class);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         NavigationView navigationView = findViewById(R.id.nav_view);
